@@ -5,6 +5,7 @@ use Lucas\PortalAcademico\Infrastructure\Adapter\Controllers\LoginController;
 
 return [
     'GET' => [
+        '/' => AlunoController::class,
         '/login' => LoginController::class,
         '/register' => [LoginController::class, 'register'],
         '/alunos' => AlunoController::class,

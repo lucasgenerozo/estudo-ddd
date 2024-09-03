@@ -1,6 +1,8 @@
 <?php
 namespace Lucas\PortalAcademico\Infrastructure\Adapter\Routes;
 
+use Lucas\PortalAcademico\Infrastructure\Adapter\Controllers\HomeController;
+
 class Router
 {
 
@@ -37,7 +39,7 @@ class Router
         $path = $_SERVER['PATH_INFO'] ?? '/';
 
         if (!isset($this->$method[$path])) {
-            $controller = 'HomeController';
+            $controller = HomeController::class;
             $method = 'notFound';
 
             return new Route(

@@ -47,14 +47,13 @@ class AlunoRepositoryPDO implements AlunoRepository
     {
         $stmt = $this->pdo->prepare('
             INSERT INTO alunos (
-                nome, email, excluido
+                nome, email
             ) VALUES (
-                :nome, :email, :excluido
+                :nome, :email
             );
         ');
         $stmt->bindValue(':nome', $aluno->getNome());
         $stmt->bindValue(':email', $aluno->getEmail());
-        $stmt->bindValue(':excluido', 0, PDO::PARAM_INT);
 
 
         $stmt->execute();
@@ -67,27 +66,27 @@ class AlunoRepositoryPDO implements AlunoRepository
         $stmt = $this->pdo->prepare('
             UPDATE alunos
             SET nome = :nome,
-                email = :email,
-                excluido = :excluido
+                email = :email
             WHERE (id = :id);
         ');
         $stmt->bindValue(':nome', $aluno->getNome());
         $stmt->bindValue(':email', $aluno->getEmail());
-        $stmt->bindValue(':excluido', 0);
         $stmt->bindValue(':id', $aluno->getId());
 
         $stmt->execute();
     }
 
-    public function save(Aluno &$aluno): Aluno
+    public function save(Aluno $aluno): Aluno
     {
-        if (!is_null($aluno->getId())) {
+        if (is_null($aluno->getId())) {
+
             $id = $this->insert($aluno);
             $aluno->setId($id);
+
+            return $aluno;
         }
 
         $this->update($aluno);
-
         return $aluno;
     }
 

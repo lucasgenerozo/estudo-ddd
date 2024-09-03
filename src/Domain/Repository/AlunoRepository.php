@@ -12,6 +12,6 @@ interface AlunoRepository
     /** @return Aluno[] $alunos */
     public function list(): array;
     public function find(int $id): ?Aluno;
-    public function save(Aluno &$aluno);
+    public function save(Aluno $aluno);
     public function delete(int $id);
 }

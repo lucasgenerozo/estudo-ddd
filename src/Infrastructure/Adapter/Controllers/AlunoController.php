@@ -50,18 +50,14 @@ class AlunoController implements Controller
                 400
             );
         }
-
         
         $alunoOrNull = (!empty($id) ? $this->alunoRepository->find($id) : null);
-        var_dump($alunoOrNull);
 
         AlunoView::form($alunoOrNull);
     }
 
     public function save()
     {
-        var_dump($_POST);
-
         $alunoInput = filter_input(INPUT_POST, 'aluno', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         if ($alunoInput === null || $alunoInput == false) {
             throw new InvalidArgumentException(
@@ -70,8 +66,9 @@ class AlunoController implements Controller
             );
         }
 
+        
         $aluno = $this->alunoRepository->hydrateAluno($alunoInput);
-
+        
         $this->alunoRepository->save($aluno);
 
         header('Location: http://localhost/alunos');
