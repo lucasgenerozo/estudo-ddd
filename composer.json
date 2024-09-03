@@ -1,0 +1,19 @@
+{
+    "name": "lucas/portal-academico",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lucas\\PortalAcademico\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas Generozo",
+            "email": "lucasgenerozo@outlook.com"
+        }
+    ],
+    "require": {}
+}
